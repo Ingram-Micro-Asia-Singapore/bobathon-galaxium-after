@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^execute_command$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .bob/hooks/gate_commit.py",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
