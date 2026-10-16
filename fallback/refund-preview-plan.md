@@ -107,4 +107,3 @@ Boundaries: exactly 7 days is **50**, exactly 24 hours is **50**.
 - `pytest -q` is green (the 11 existing tests plus the new ones).
 - With the server running, `GET /bookings/2/cancel-preview` returns 50%.
 - `/docs` lists the new endpoint, and the MCP tool list includes `preview_refund`.
-- The commit goes through the `gate_commit` hook.

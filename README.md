@@ -86,33 +86,9 @@ strings like `2030-01-01T12:00:00Z`.
 | File | What it does |
 |---|---|
 | `custom_modes.yaml` | A read-only **Reviewer** mode: reviews code, never edits |
-| `settings.json` | A `PreToolUse` hook that blocks `git commit` while tests fail |
-| `hooks/gate_commit.py` | The hook script (Python, so it works on Windows and macOS) |
 | `mcp.json` | Connects Bob to this app's MCP endpoint at `http://localhost:8000/mcp` |
 | `skills/verify/SKILL.md` | A `verify` skill: run pytest and summarise the result |
 
 The MCP server only works while the app is running (`uvicorn ...` above).
 
-### The `python` vs `py` caveat
-
-The hook is invoked as `python .bob/hooks/gate_commit.py`. Bob runs hook
-commands with `cmd /c` on Windows and `sh -c` on macOS/Linux, so `python` must
-resolve to a real Python 3 on your machine:
-
-- **Windows:** if `python` opens the Microsoft Store (the "App execution alias"
-  stub), either change the command in `.bob/settings.json` to
-  `py .bob/hooks/gate_commit.py`, or turn the alias off in
-  *Settings > Apps > Advanced app settings > App execution aliases*.
-- **macOS:** if only `python3` exists, change the command to
-  `python3 .bob/hooks/gate_commit.py`.
-
-The hook runs the tests with `.venv`'s Python if a `.venv` folder exists in
-the repo root, otherwise with whichever Python ran the hook. If pytest is not
-installed there, it lets the commit through and says so on stderr.
-
-Try it without Bob (macOS Terminal or Git Bash):
-
-```bash
-echo '{"tool_name":"execute_command","tool_input":{"command":"git commit -m test"}}' | python .bob/hooks/gate_commit.py
-echo $?    # 0 = allowed, 2 = blocked
-```
+This kit is ours, not built into Bob. Bob's own `/review` command is built in.

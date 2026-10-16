@@ -28,7 +28,7 @@ Examples against the seed data:
   parameters automatically. Check: Bob can answer "which flights leave Earth
   for under 1000?" using the MCP tool.
 - New tests cover each filter, a combination, and the empty result.
-- `pytest -q` is green and the commit hook lets you commit.
+- `pytest -q` is green.
 
 Suggested Bob flow: Plan mode to write `plans/flight-filters.md`, Agent mode to
-implement it, then switch to the Reviewer mode for a review.
+implement it, then run `/review`.
