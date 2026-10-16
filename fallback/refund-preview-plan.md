@@ -1,7 +1,7 @@
 # Plan: refund preview on cancel
 
-Fallen behind? Copy this file to `plans/refund-preview-plan.md` and ask Bob
-(Code mode): "Implement plans/refund-preview-plan.md, then run the verify skill."
+Fallen behind? Copy this file to `plans/refund-preview.md` and ask Bob
+(Agent mode): "Build the feature in @/plans/refund-preview.md, then run the tests."
 
 ## Goal
 

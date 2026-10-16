@@ -30,5 +30,5 @@ Examples against the seed data:
 - New tests cover each filter, a combination, and the empty result.
 - `pytest -q` is green and the commit hook lets you commit.
 
-Suggested Bob flow: Plan mode to write `plans/flight-filters.md`, Code mode to
+Suggested Bob flow: Plan mode to write `plans/flight-filters.md`, Agent mode to
 implement it, then switch to the Reviewer mode for a review.
