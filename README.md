@@ -5,6 +5,8 @@ It is a cut-down cousin of IBM's Galaxium Travels demo: FastAPI, plain
 `sqlite3` (no ORM), pydantic models and a pytest suite. The same API is also
 exposed as **MCP tools** at `/mcp`, so Bob can call it directly.
 
+Based on IBM's [Galaxium Travels](https://github.com/IBM/galaxium-travels) demo, used under the Apache License 2.0 (see `LICENSE`). Cut down and rewritten for the Ingram Bobathon lab.
+
 ## Run it
 
 Requires Python 3.11+ (tested on 3.13).
