@@ -9,7 +9,7 @@ from fastapi.responses import JSONResponse
 from fastapi_mcp import FastApiMCP
 
 from app import db
-from app.schemas import Booking, BookingCreate, Error, Flight
+from app.schemas import Booking, BookingCreate, Error, Flight, RefundPreview
 from app.services import ConflictError, NotFoundError, bookings, flights
 
 
@@ -114,6 +114,22 @@ def cancel_booking(
 ):
     """Cancel a booking. Fails if it is already cancelled or the flight has departed."""
     return bookings.cancel_booking(conn, booking_id, now)
+
+
+@app.get(
+    "/bookings/{booking_id}/refund-preview",
+    response_model=RefundPreview,
+    responses=NOT_FOUND,
+    tags=["Bookings"],
+    operation_id="preview_refund",
+)
+def preview_refund(
+    booking_id: int,
+    conn: sqlite3.Connection = Depends(db.get_conn),
+    now: datetime = Depends(get_now),
+):
+    """Preview the refund amount for cancelling a booking without actually cancelling it."""
+    return bookings.refund_preview(conn, booking_id, now)
 
 
 # Keep this LAST: FastApiMCP snapshots the routes that exist when it is created,

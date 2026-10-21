@@ -63,3 +63,58 @@ def test_cannot_cancel_after_departure(conn):
 
     with pytest.raises(ConflictError, match="after departure"):
         bookings.cancel_booking(conn, 3, now=after_departure)
+
+
+def test_refund_preview_100pct(client):
+    response = client.get("/bookings/1/refund-preview")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["booking_id"] == 1
+    assert body["status"] == "booked"
+    assert body["refund_pct"] == 100
+    assert body["refund_amount"] == 1200.0
+
+
+def test_refund_preview_50pct(client):
+    response = client.get("/bookings/2/refund-preview")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["booking_id"] == 2
+    assert body["status"] == "booked"
+    assert body["refund_pct"] == 50
+    assert body["refund_amount"] == 150.0
+
+
+def test_refund_preview_0pct_under_24h(client):
+    response = client.get("/bookings/3/refund-preview")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["booking_id"] == 3
+    assert body["status"] == "booked"
+    assert body["refund_pct"] == 0
+    assert body["refund_amount"] == 0.0
+
+
+def test_refund_preview_0pct_already_cancelled(client):
+    response = client.get("/bookings/4/refund-preview")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["booking_id"] == 4
+    assert body["status"] == "cancelled"
+    assert body["refund_pct"] == 0
+    assert body["refund_amount"] == 0.0
+
+
+def test_refund_preview_unknown_booking_is_404(client):
+    assert client.get("/bookings/999/refund-preview").status_code == 404
+
+
+def test_refund_preview_after_departure_is_409(conn):
+    after_departure = NOW + timedelta(hours=13)  # booking 3 departs NOW + 12h
+
+    with pytest.raises(ConflictError, match="already departed"):
+        bookings.refund_preview(conn, 3, now=after_departure)

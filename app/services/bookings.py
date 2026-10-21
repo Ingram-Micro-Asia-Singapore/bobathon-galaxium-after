@@ -53,3 +53,29 @@ def cancel_booking(conn: sqlite3.Connection, booking_id: int, now: datetime) -> 
     conn.execute("UPDATE bookings SET status = 'cancelled' WHERE id = ?", (booking_id,))
     conn.commit()
     return get_booking(conn, booking_id)
+
+
+def refund_preview(conn: sqlite3.Connection, booking_id: int, now: datetime) -> dict:
+    booking = get_booking(conn, booking_id)
+    flight = get_flight(conn, booking["flight_id"])
+
+    if booking["status"] == "cancelled":
+        pct = 0
+    elif from_iso(flight["departure_time"]) <= now:
+        raise ConflictError(f"Booking {booking_id} flight has already departed")
+    else:
+        delta = from_iso(flight["departure_time"]) - now
+        seconds = delta.total_seconds()
+        if seconds > 7 * 24 * 3600:
+            pct = 100
+        elif seconds >= 24 * 3600:
+            pct = 50
+        else:
+            pct = 0
+
+    return {
+        "booking_id": booking_id,
+        "status": booking["status"],
+        "refund_pct": pct,
+        "refund_amount": round(flight["price"] * pct / 100, 2),
+    }

@@ -28,5 +28,12 @@ class Booking(BaseModel):
     booked_at: str = Field(description="ISO-8601 UTC")
 
 
+class RefundPreview(BaseModel):
+    booking_id: int
+    status: BookingStatus
+    refund_pct: int
+    refund_amount: float
+
+
 class Error(BaseModel):
     detail: str
