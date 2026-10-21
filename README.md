@@ -105,7 +105,7 @@ Folder), not a folder above it, and choose *Yes, I trust the authors* when Bob a
 project's version wins.
 
 The pictures below show each file next to what it made Bob do. They are a recreated IDE around real output from
-Bob Shell 2.0.6 runs of this project (20 Oct 2026). Your Bob's wording will differ.
+Bob Shell 2.0.6 runs of this project (20–21 Oct 2026). Your Bob's wording will differ.
 
 ### `mcp.json`: connect Bob to this app's API
 
@@ -178,6 +178,8 @@ customModes:
 
 **Why we built it this way.** Line 10 *asks* Bob never to edit; line 19 makes sure it can't. Instructions are a
 request, tool groups are a limit. That's the difference to keep in mind when you write your own modes.
+
+![Bob in Reviewer mode beside .bob/custom_modes.yaml: it read six files, changed none, and opened its review with a summary and findings by file and line](https://yeokimsiang.github.io/bobathon-galaxium-lite/media/kit-reviewer.png)
 
 **Reviewer or `/review`?** Both review code. Reviewer is our mode: a chat answer, shaped by the instructions above,
 in Bob IDE and Bob Shell. `/review` is built into Bob IDE: it reviews your uncommitted changes (or a branch) and
