@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galaxium Lite: after the lab</title>
+  <meta name="description" content="The Galaxium Lite lab app after IBM Bob added a refund preview, running in your browser.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="web/ingram.css">
+  <link rel="stylesheet" href="web/demo.css">
+</head>
+<body data-version="after">
+  <header class="masthead">
+    <div class="wrap">
+      <img class="logo" src="web/ingram-logo.svg" alt="Ingram Micro" width="132" height="24">
+      <span class="eyebrow">Bobathon · IBM Bob lab</span>
+    </div>
+  </header>
+  <main class="wrap content">
+    <p class="badge">After the lab</p>
+    <h1>Galaxium Lite, with Bob's refund preview</h1>
+    <p class="lead">This is the same app after the lab, with the refund preview IBM Bob built in our run on
+    21 October 2026. Press <strong>Cancel</strong> on any booking: before you confirm, it now tells you what you'd get
+    back.</p>
+
+    <section id="loading" class="loading" aria-live="polite">
+      <p id="loading-step" class="loading-step">Starting the app in your browser…</p>
+      <p id="loading-note" class="loading-note">The first visit downloads about 9 MB of Python and takes 10 to 30
+      seconds. Later visits are quicker.</p>
+    </section>
+
+    <div id="app" hidden>
+      <p id="notice" class="notice" role="status" hidden></p>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Bookings</h2>
+          <button id="start-over" class="btn btn-quiet" type="button">Start over</button>
+        </div>
+        <ul id="bookings" class="bookings"></ul>
+      </section>
+
+      <section class="panel">
+        <h2>Book a flight</h2>
+        <form id="book-form" class="book-form">
+          <label>Traveller <select id="book-user"></select></label>
+          <label>Flight <select id="book-flight"></select></label>
+          <button class="btn btn-primary" type="submit">Book</button>
+        </form>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>The rules</h2>
+      <p>What the lab asks Bob to build. Bookings 1, 2 and 3 each start in a different band.</p>
+      <table>
+        <thead><tr><th>Time to departure</th><th>Refund</th></tr></thead>
+        <tbody>
+          <tr><td>more than 7 days</td><td>100%</td></tr>
+          <tr><td>1 to 7 days</td><td>50%</td></tr>
+          <tr><td>under 24 hours, or already cancelled</td><td>0%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <blockquote class="how">
+      <p><strong>How this works.</strong> The page runs this repo's own Python code (the <code>app/</code> folder:
+      FastAPI and SQLite) inside your browser and talks to it through the app's own web routes. Nothing is sent to a
+      server. Every visit starts with fresh demo data, and so does <strong>Start over</strong>.</p>
+      <p><a href="https://github.com/yeokimsiang/bobathon-galaxium-after/commit/19486bfa370fdb28675f77677906a09f442cdc17">See the code Bob wrote (one commit)</a>
+      · <a href="https://yeokimsiang.github.io/bobathon-galaxium-before/">Compare with the before page</a>
+      · <a href="https://yeokimsiang.github.io/bobathon-galaxium-lite/">The lab guide</a></p>
+    </blockquote>
+  </main>
+  <footer class="wrap foot">
+    <p>Ingram Micro Bobathon, 29 October 2026. <span id="under-the-hood"></span> The app's code is this repo's,
+    unchanged. Two things are swapped for the browser: the MCP endpoint is off, and FastAPI runs routes without worker
+    threads. The lab itself pins FastAPI 0.142.2.</p>
+  </footer>
+
+  <dialog id="cancel-dialog" class="dialog" aria-labelledby="cancel-title">
+    <form method="dialog">
+      <h3 id="cancel-title">Cancel booking?</h3>
+      <p id="cancel-trip" class="dialog-trip"></p>
+      <p id="cancel-refund" class="dialog-refund"></p>
+      <p id="cancel-source" class="dialog-source"></p>
+      <div class="dialog-actions">
+        <button value="keep" class="btn btn-quiet">Keep booking</button>
+        <button value="confirm" id="cancel-confirm" class="btn btn-danger">Cancel booking</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.js"></script>
+  <script src="web/demo.js"></script>
+</body>
+</html>

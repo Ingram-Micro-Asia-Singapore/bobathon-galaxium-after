@@ -1,5 +1,9 @@
 # Galaxium Lite
 
+<!-- demo-note -->
+> **Try it in your browser:** [https://yeokimsiang.github.io/bobathon-galaxium-after/](https://yeokimsiang.github.io/bobathon-galaxium-after/) runs this repo's app after IBM Bob added a refund preview in our lab run on 21 October 2026 ([Bob's commit](https://github.com/yeokimsiang/bobathon-galaxium-after/commit/19486bfa370fdb28675f77677906a09f442cdc17)). Compare with [the starting app](https://yeokimsiang.github.io/bobathon-galaxium-before/). The lab itself: [bobathon-galaxium-lite](https://github.com/yeokimsiang/bobathon-galaxium-lite).
+<!-- /demo-note -->
+
 A small interplanetary flight booking API, used for the IBM Bob hands-on lab.
 It is a cut-down cousin of IBM's Galaxium Travels demo: FastAPI, plain
 `sqlite3` (no ORM), pydantic models and a pytest suite. The same API is also
