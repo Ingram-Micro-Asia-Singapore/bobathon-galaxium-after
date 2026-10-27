@@ -1,7 +1,7 @@
 # Galaxium Lite
 
 <!-- demo-note -->
-> **Try it in your browser:** [https://yeokimsiang.github.io/bobathon-galaxium-after/](https://yeokimsiang.github.io/bobathon-galaxium-after/) runs this repo's app after IBM Bob added a refund preview in our lab run on 21 October 2026 ([Bob's commit](https://github.com/yeokimsiang/bobathon-galaxium-after/commit/19486bfa370fdb28675f77677906a09f442cdc17)). Compare with [the starting app](https://yeokimsiang.github.io/bobathon-galaxium-before/). The lab itself: [bobathon-galaxium-lite](https://github.com/yeokimsiang/bobathon-galaxium-lite).
+> **Try it in your browser:** [https://ingram-micro-asia-singapore.github.io/bobathon-galaxium-after/](https://ingram-micro-asia-singapore.github.io/bobathon-galaxium-after/) runs this repo's app after IBM Bob added a refund preview in our lab run on 21 October 2026 ([Bob's commit](https://github.com/Ingram-Micro-Asia-Singapore/bobathon-galaxium-after/commit/19486bfa370fdb28675f77677906a09f442cdc17)). Compare with [the starting app](https://ingram-micro-asia-singapore.github.io/bobathon-galaxium-before/). The lab itself: [bobathon-galaxium-lite](https://github.com/Ingram-Micro-Asia-Singapore/bobathon-galaxium-lite).
 <!-- /demo-note -->
 
 A small interplanetary flight booking API, used for the IBM Bob hands-on lab.
@@ -12,7 +12,7 @@ exposed as **MCP tools** at `/mcp`, so Bob can call it directly.
 Based on IBM's [Galaxium Travels](https://github.com/IBM/galaxium-travels) demo, used under the Apache License 2.0 (see `LICENSE`). Cut down and rewritten for the Ingram Bobathon lab.
 
 > **Doing the Bob lab?** Follow the step-by-step guide:
-> **<https://yeokimsiang.github.io/bobathon-galaxium-lite/>** (also `GUIDE.md`, next to this folder in the
+> **<https://ingram-micro-asia-singapore.github.io/bobathon-galaxium-lite/>** (also `GUIDE.md`, next to this folder in the
 > download). The guide sits outside this folder on purpose: Bob reads every file in the folder you open, and it
 > should work out this project from the code, not from a walkthrough.
 
@@ -145,7 +145,7 @@ say never to put tokens in this file. No `alwaysAllow`: Bob asks you before ever
 **In Bob IDE:** the server shows under Bob's settings menu > **MCP**. If you start the app after Bob, press
 **Restart** there.
 
-![Bob calling a tool on the galaxium-lite MCP server, with .bob/mcp.json open: line 3 names the server, line 5 is its URL](https://yeokimsiang.github.io/bobathon-galaxium-lite/media/kit-mcp.png)
+![Bob calling a tool on the galaxium-lite MCP server, with .bob/mcp.json open: line 3 names the server, line 5 is its URL](https://ingram-micro-asia-singapore.github.io/bobathon-galaxium-lite/media/kit-mcp.png)
 
 ### `custom_modes.yaml`: a Reviewer that can't edit
 
@@ -183,7 +183,7 @@ customModes:
 **Why we built it this way.** Line 10 *asks* Bob never to edit; line 19 makes sure it can't. Instructions are a
 request, tool groups are a limit. That's the difference to keep in mind when you write your own modes.
 
-![Bob in Reviewer mode beside .bob/custom_modes.yaml: it read six files, changed none, and opened its review with a summary and findings by file and line](https://yeokimsiang.github.io/bobathon-galaxium-lite/media/kit-reviewer.png)
+![Bob in Reviewer mode beside .bob/custom_modes.yaml: it read six files, changed none, and opened its review with a summary and findings by file and line](https://ingram-micro-asia-singapore.github.io/bobathon-galaxium-lite/media/kit-reviewer.png)
 
 **Reviewer or `/review`?** Both review code. Reviewer is our mode: a chat answer, shaped by the instructions above,
 in Bob IDE and Bob Shell. `/review` is built into Bob IDE: it reviews your uncommitted changes (or a branch) and
@@ -245,7 +245,7 @@ pytest  | PASS   | <final pytest line, e.g. "11 passed in 0.3s">
 different words each time. A skill writes it down once, and the description decides when it applies. In Bob IDE,
 Bob asks your permission before it loads a skill, unless you auto-approve skills.
 
-![Bob loading the verify skill without being asked, with SKILL.md open: line 3 says when to use it, lines 29–31 are the report Bob gives](https://yeokimsiang.github.io/bobathon-galaxium-lite/media/kit-verify.png)
+![Bob loading the verify skill without being asked, with SKILL.md open: line 3 says when to use it, lines 29–31 are the report Bob gives](https://ingram-micro-asia-singapore.github.io/bobathon-galaxium-lite/media/kit-verify.png)
 
 ### What's not in `.bob/`, on purpose
 
